@@ -4,9 +4,9 @@
  */
 package cardgameMain;
 
-/**
- *
- * @author le bratte
+/** 
+ * 
+ * This card has no jokers
  */
 public class Card {
     //set a value for the suits
@@ -30,16 +30,31 @@ public class Card {
         value = ACE;
     }
     
-    public Card(int cValue, int cSuit){
+    public Card(int cSuit, int cValue){
         
         if(cSuit != SPADES && cSuit != HEARTS && cSuit != DIAMONDS && cSuit != CLUBS){
             throw new IllegalArgumentException("Illegal card suit");
-        } else if(cValue < 1 || cValue > 13){
+        }
+        else{
+            suit = cSuit;
+        }
+        if(cValue < 1 || cValue > 13){
             throw new IllegalArgumentException("Ilegal card Value");
+        }
+        else{
+            value = cValue;
         }
     }
     
-    public String getSuit(){
+    public int getSuit(){
+        return suit;
+    }
+    
+    public int getValue(){
+        return value;
+    }
+    
+    public String getSuitAsString(){
         switch(suit){
             case 0: return "Spades";
             case 1: return "Hearts";
@@ -49,7 +64,7 @@ public class Card {
         }
     }
     
-    public String getValue(){
+    public String getValueAsString(){
         switch(value){
             case 1: return "ACE";
             case 2: return "2";
