@@ -4,24 +4,85 @@
  */
 package cardgameMain;
 
+import java.util.*;
 
 public class Hand {
+    private ArrayList<Card> hand;
     int position;
+    
+    public Hand(){
+        hand = new ArrayList<Card>();
+    }
+    
+    //clear cards from hand
+    public void clear(){
+        hand.clear();
+    }
+    
     //add card from deck
-    public void addCard(Card c);
+    public void addCard(Card c){
+        if(c == null)
+            throw new NullPointerException("Can't add a null card here");
+        hand.add(c);
+    }
+    
     //remove a single card
-    public void removeCard(int position);
+    public void removeCard(Card c){
+        hand.remove(c);
+    }
+    
+    //remove card from a specific position
+    public void removeCard(int pos){
+        if(pos < 0 || pos >= hand.size())
+            throw new IllegalArgumentException("Position is not valid" + pos);
+        hand.remove(pos);
+    }
+    
     //get a card from a specific position
-    public void getCard(int position);
-    //remove all cards from the hand
-    public void clearHand();
-    //how many cards are in hand?
-    public int getCardCount();
+    public Card getCard(int pos){
+        if(pos < 0 || pos >= hand.size())
+            throw new IllegalArgumentException("Position is not valid" + pos);
+        return hand.get(pos);
+    }
+    
     
     //sort by suit
-    public int sortCardsBySuit();
+    public void sortCardsBySuit(){
+        ArrayList<Card> newHand = new ArrayList<>();
+        while(hand.size() > 0){
+            int pos = 0;
+            Card c = hand.get(0);
+            for(int i = 0; i < hand.size(); i++){
+                Card cC = hand.get(i);
+                if(cC.getSuit() < c.getSuit() || cC.getSuit() == c.getSuit() && cC.getCardValue() < c.getCardValue()){
+                    pos = i;
+                    c = cC;
+                }
+            }
+            hand.remove(pos);
+            newHand.add(c);
+        }
+        hand = newHand;
+    }
+        
     //sort by numbers
-    public int sortCardsByNumber();
+    public void sortCardsByNumber(){
+        ArrayList<Card> newHand = new ArrayList<>();
+        while(hand.size() > 0){
+            int pos = 0;
+            Card c = hand.get(0);
+            for(int i = 0; i < hand.size(); i++){
+                Card cC = hand.get(i);
+                if(cC.getCardValue() < c.getCardValue() || cC.getCardValue() == c.getCardValue() && cC.getSuit() < c.getSuit()){
+                    pos = i;
+                    c = cC;
+                }
+            }
+            hand.remove(pos);
+            newHand.add(c);
+        }
+        hand = newHand;
+    }
     
    
 }

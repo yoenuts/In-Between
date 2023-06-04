@@ -50,7 +50,7 @@ public class Card {
         return suit;
     }
     
-    public int getValue(){
+    public int getCardValue(){
         return value;
     }
     
@@ -85,6 +85,6 @@ public class Card {
         
             
     public String toString(){
-        return getValue() + " of " + getSuit();
+        return getCardValue() + " of " + getSuit();
     }
 }
