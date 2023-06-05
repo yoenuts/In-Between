@@ -85,6 +85,7 @@ public class Card {
         
             
     public String toString(){
-        return getCardValue() + " of " + getSuit();
+        
+        return getCardValue() + " of " + getSuitAsString();
     }
 }
