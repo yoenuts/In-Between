@@ -19,16 +19,30 @@ public class Hand {
         hand.clear();
     }
     
-    //add card from deck
     public void addCard(Card c){
         if(c == null)
             throw new NullPointerException("Can't add a null card here");
         hand.add(c);
+        
+    }
+    
+    //add card from deck
+    public void addCard(Card c, Card d){
+        if(c == null)
+            throw new NullPointerException("Can't add a null card here");
+        hand.add(c);
+        hand.add(d);
     }
     
     //remove a single card
     public void removeCard(Card c){
         hand.remove(c);
+    }
+    
+    //remove 2
+    public void removeCard(Card c, Card d){
+        hand.remove(c);
+        hand.remove(d);
     }
     
     //remove card from a specific position
@@ -45,6 +59,9 @@ public class Hand {
         return hand.get(pos);
     }
     
+    public int getCardCount(){
+        return hand.size();
+    }
     
     //sort by suit
     public void sortCardsBySuit(){

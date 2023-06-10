@@ -18,15 +18,15 @@ public class CardGame extends Application {
     
     //to practice drawing cards from cardsImg
     //need ko i code para maintindihan lmao
-    private Canvas canvas;
-    private Image cardImages;
+    static private Canvas canvas;
+    static private Image cardImages;
     
     public static void main(String[] args){
         launch();
     }
     
     public void start(Stage thisStage){
-        cardImages = new Image("cards.jpg");
+        cardImages = new Image(getClass().getResource("cards.jpg").toExternalForm());
         
         canvas = new Canvas(5*79 + 120, 123 + 40); 
         //every card img is 79 by 123 pixels, 
@@ -69,12 +69,13 @@ public class CardGame extends Application {
         double dx,dy; //top left corener naman sa canvas
         
         
-        for(int i = 0; i < 5;i++){
+        for(int i = 0; i < 3;i++){
             Card card = thisDeck.dealCard();
             System.out.println(card);
             sx = 79 * (card.getCardValue() - 1);
             sy = 123 * (3 - card.getSuit());
-            dx = 20 + (79 + 20) * i;
+            dx = 20 + (79 + 20) * i; //79 pixel yung width tas may 20 pixel gap sila, bali add mo lang yung 20 fropm
+            //dulong dulo ng picture, tas add ka ulo ng 20 para dun sa gap per cards
             dy = 20;
             g.drawImage(cardImages, sx,sy,79,123,dx,dy,79,123);
         }

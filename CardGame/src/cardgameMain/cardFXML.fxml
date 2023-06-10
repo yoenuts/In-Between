@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane fx:id="deckTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cardgameMain.CardFXMLController">
+   <center>
+      <Canvas fx:id="deckCanvas" height="306.0" width="629.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <HBox fx:id="ButtonBar" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="inBetween" mnemonicParsing="false" onAction="#inBeweenB" prefHeight="102.0" prefWidth="285.0" text="In Between" />
+            <Button fx:id="skip" mnemonicParsing="false" onAction="#SkipB" prefHeight="106.0" prefWidth="150.0" text="Skip Turn" />
+            <Button fx:id="newGame" mnemonicParsing="false" onAction="#newGameB" prefHeight="102.0" prefWidth="231.0" text="New Game" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
