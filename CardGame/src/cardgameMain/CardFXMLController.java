@@ -35,6 +35,10 @@ public class CardFXMLController implements Initializable {
     private static Hand hand;
     private static Deck deck;
     private static Image cardImages;
+    private static Card firstCard;
+    private static Card secondCard;
+    private static int winCounter = 0;
+    
     
     /////////////////////
     @FXML
@@ -68,15 +72,20 @@ public class CardFXMLController implements Initializable {
             drawBoard();
             return;
         }
-        
+        //this one, galing na sa deck
         hand.addCard(deck.dealCard());
         int cardCt = hand.getCardCount();
-        Card firstCard = hand.getCard( cardCt - 1);
-        Card secondCard = hand.getCard( - 2);
-        Card deckCard = hand.getCard(cardCt - 3);
+        //get cards in hand
+        Card deckCard = hand.getCard(cardCt - 1);
         
+        if((deckCard.getCardValue() < firstCard.getCardValue() && deckCard.getCardValue() > secondCard.getCardValue()) || 
+                (deckCard.getCardValue() > firstCard.getCardValue() && deckCard.getCardValue() < secondCard.getCardValue())){
+            winCounter++;
+            message = "Your guess was correct!";
+            
+        }
         
-        
+          
     }
     
     private void drawCard(GraphicsContext g, Card card, int x, int y){
@@ -123,7 +132,19 @@ public class CardFXMLController implements Initializable {
         deck = new Deck();
         hand = new Hand();
         deck.shuffleDeck();
-        hand.addCard(deck.dealCard());
+        hand.addCard(deck.dealCard(), deck.dealCard());
+
+        int cardCt = hand.getCardCount();
+        Card secondCard = hand.getCard( cardCt - 1);
+        Card firstCard = hand.getCard(cardCt - 2);
+        
+        // in case both cards are equal to each other, remove the ones in hand, draw a new card from 
+        //deck na din
+        while(firstCard.getCardValue() == secondCard.getCardValue()){
+            doNewGame();
+        }
+        
+        
         message = "Will the next card be in between?";
         gameInProgress = true;
         drawBoard();
