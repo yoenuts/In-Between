@@ -90,7 +90,8 @@ public class CardFXMLController implements Initializable {
             winCounter++;
             message = (String.format("Your guess was correct! Your current points: %d", winCounter));
             JOptionPane.showMessageDialog(null, message);
-               
+            gameInProgress = false;
+            doNewGame();
         } else{
             message = "Guess was incorrect. Select \"New Game\" to start." ;
             winCounter = 0;
@@ -105,7 +106,7 @@ public class CardFXMLController implements Initializable {
             //doNewGame();
         }
         
-        
+        gameInProgress = false;
     }
     
     private void drawCard(GraphicsContext g, Card card, int x, int y){
